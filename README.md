@@ -10,7 +10,7 @@ Interactive proof work (goals, hover, lemma search) is provided by the separate 
 ## Install (once, works in every project)
 As a Claude Code plugin (MCP server + skill together):
 ```
-/plugin marketplace add /path/to/lean-verify-mcp     # or <github-user>/lean-verify-mcp once pushed
+/plugin marketplace add volli60/lean-verify-mcp
 /plugin install lean-verify@lean-verify-marketplace
 ```
 Manual alternative (run from the repository root):
