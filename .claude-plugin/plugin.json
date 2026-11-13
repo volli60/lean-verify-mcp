@@ -1,0 +1,11 @@
+{
+  "name": "lean-verify",
+  "version": "0.1.0",
+  "description": "Formal verification gate for Lean 4: init, build, freeze theorem statements, audit. Works on any project.",
+  "mcpServers": {
+    "lean-verify": {
+      "command": "uv",
+      "args": ["run", "--script", "${CLAUDE_PLUGIN_ROOT}/server.py"]
+    }
+  }
+}

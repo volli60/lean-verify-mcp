@@ -1,0 +1,7 @@
+{
+  "name": "lean-verify-marketplace",
+  "owner": { "name": "lean-verify-mcp" },
+  "plugins": [
+    { "name": "lean-verify", "source": "./", "description": "Formal verification gate for Lean 4" }
+  ]
+}

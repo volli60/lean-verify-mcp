@@ -1,0 +1,21 @@
+import Lean
+import __LIB__
+open Lean Meta Elab
+
+-- User-written theorems (with a source position), no auto-generated ones.
+#eval show MetaM Unit from do
+  let env ← getEnv
+  let mut names : Array Name := #[]
+  for (n, ci) in env.constants.map₁.toList do
+    if let some idx := env.getModuleIdxFor? n then
+      let m := env.header.moduleNames[idx.toNat]!
+      if m.getRoot == `__LIB__ && ci matches .thmInfo _ && !n.isInternal then
+        if (← findDeclarationRanges? n).isSome then
+          names := names.push n
+  names := names.qsort (fun a b => a.toString < b.toString)
+  for n in names do
+    let ci ← getConstInfo n
+    let ty ← ppExpr ci.type
+    let ax ← collectAxioms n
+    let axs := ax.toList.map toString |>.toArray |>.qsort (· < ·)
+    IO.println (Json.mkObj [("name", toString n), ("type", toString ty), ("axioms", toJson axs)]).compress
